@@ -13,14 +13,14 @@ def get_redact_word():
     rtext = input("Type the words to redact, multiple words should be seperated by space: ")
     return rtext
 
-def scan_redact(text, rtext):
+def scan_redact(text, rtext, replacement="replacement"):
     start_time = time.time()
     texts_to_scan = rtext.split()
     matches = []
     scrambled_words = text
     for wrd in texts_to_scan:
         if wrd in scrambled_words:
-            scrambled_words = scrambled_words.replace(wrd, "****")
+            scrambled_words = scrambled_words.replace(wrd, replacement)
             matches.append(wrd)
     end_time = time.time()
     duration = end_time - start_time

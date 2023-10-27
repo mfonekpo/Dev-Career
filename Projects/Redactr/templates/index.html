@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Scrambler</title>
+    <!-- <link rel="stylesheet" href="../static/index.css"> -->
+    <link href="{{ url_for('static', path='../static/index.css') }}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <div class="container">
+        <h1>Text Scrambler</h1>
+        <p>Helping you safely share content on social media.</p>
+        <div class="input-container">
+            <label for="content">Content:</label>
+            <textarea id="content" placeholder="Paste or write your content here..."></textarea>
+            <label for="words">Words to Scramble:</label>
+            <input type="text" id="words" placeholder="Separate words with space">
+            <label for="replacement">Replacement (optional):</label>
+            <input type="text" id="replacement" placeholder="e.g. ****, ???, ---, etc.">
+            <button id="redact-btn">Redact Now</button>
+        </div>
+        <div class="output-container">
+            <h2>Redacted Content:</h2>
+            <textarea id="redacted-content" readonly></textarea>
+        </div>
+        <div class="stats-container">
+            <h2>Stats:</h2>
+            <ul>
+                <li>Total words scanned: <span id="total-words">0</span></li>
+                <li>Words redacted: <span id="redacted-words">0</span></li>
+                <li>Total characters scrambled: <span id="char-scrambled">0</span></li>
+                <li>Time taken: <span id="time-taken">0</span> seconds</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redact Content</title>
+</head>
+<body>
+
+
+    <form action="/redact/" method="post">
+        <textarea name="text" rows="10" cols="30" placeholder="Enter text here..."></textarea><br><br>
+        <input type="text" name="redact_words" placeholder="Words to redact (separated by space)"><br><br>
+        <input type="text" name="scramble_with" placeholder="Replace with (default is ****)"><br><br>
+        <input type="submit" value="Redact Now">
+    </form>
+    {% if response %}
+    <h3>Results:</h3>
+    <p><strong>Scrambled Text:</strong> {{ response.scrambled_text }}</p>
+    <p><strong>Words Scanned:</strong> {{ response.words_scanned }}</p>
+    <p><strong>Matches Found:</strong> {{ response.matches_found }}</p>
+    <p><strong>Words Redacted:</strong> {{ ', '.join(response.words_redacted) }}</p>
+    <p><strong>Scan Duration:</strong> {{ response.scan_duration }} seconds</p>
+    {% endif %}
+</body>
+</html> -->
