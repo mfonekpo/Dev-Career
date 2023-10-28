@@ -1,7 +1,8 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from logic import scan_stats
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="../static"), name="static")
@@ -15,28 +16,20 @@ def render_page(request: Request):
     return templates.TemplateResponse("index.html", context)
 
 
-
-
-
-
-
-
-
-
-
-
-
-# @app.get("/")
-# def read_root(request: Request):
-#     return templates.TemplateResponse("form.html", {"request": request, "response": None})
-
-# @app.post("/redact/")
-# def redact_content(
-#     request: Request,
-#     text: str = Form(...), 
-#     redact_words: str = Form(...), 
-#     scramble_with: Optional[str] = Form("****")
-# ):
-#     # [Redaction logic remains the same...]
+@app.post("/redact", response_class=HTMLResponse)
+def redact_text(request: Request, content: str = Form(...), words: str = Form(...), replacement: str = Form("****")):
+    scrambled_content, matches, duration = scan_stats(content, words, replacement)
+    context = {"request": request,
+               "redacted_content": scrambled_content,
+               "words_scanned": len(content.split()), 
+               "matches": len(matches), 
+               "scrambled_words": ', '.join(matches),
+               "duration": f"{round(duration, 2)}"
+               }
+    return templates.TemplateResponse("index.html", context)
     
-#     return templates.TemplateResponse("form.html", {"request": request, "response": response})
+    # [Redaction logic remains the same...]
+
+
+
+

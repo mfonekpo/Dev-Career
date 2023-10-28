@@ -5,15 +5,11 @@ def user_string():
     return text
 
 
-# def message_scan(text):
-#     word_count = len(text.split())
-#     return word_count
-
 def get_redact_word():
     rtext = input("Type the words to redact, multiple words should be seperated by space: ")
     return rtext
 
-def scan_redact(text, rtext, replacement="replacement"):
+def scan_redact(text:str, rtext:str, replacement:str ="***"):
     start_time = time.time()
     texts_to_scan = rtext.split()
     matches = []
@@ -27,8 +23,8 @@ def scan_redact(text, rtext, replacement="replacement"):
     return scrambled_words, matches, duration
 
 
-def scan_stats(text, rtext):
-    stats = scan_redact(text, rtext)
+def scan_stats(text:str, rtext:str, replacement: str="***"):
+    stats = scan_redact(text, rtext, replacement)
     return stats
 
 
@@ -39,8 +35,6 @@ def main():
     text = user_string() #Get users input
     print(text)
 
-    # word_count = message_scan(text) #Get word count
-    # print(f"word count: {word_count}")
 
     rtext = get_redact_word() #Get redact words from user
 
