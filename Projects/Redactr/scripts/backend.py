@@ -12,7 +12,7 @@ app.mount("/static", StaticFiles(directory="../static"), name="static")
 
 templates = Jinja2Templates(directory="../templates")
 
-@app.get("/index", response_class=HTMLResponse)
+@app.get("/", response_class=HTMLResponse)
 def render_page(request: Request):
     context = {"request": request}
     return templates.TemplateResponse("index.html", context)
