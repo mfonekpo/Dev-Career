@@ -1,12 +1,15 @@
 From python:3.11-alpine
 
-WORKDIR /redactrApp
+WORKDIR /app
 
-COPY . /redactrApp
+# Set Python Path to include /app
+ENV PYTHONPATH=/app
+
+ADD . /app
+
 
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
-# COPY ../ .
 
 EXPOSE 8000
 
