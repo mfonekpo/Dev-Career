@@ -7,10 +7,10 @@ import uvicorn
 
 
 app = FastAPI()
-app.mount("/static", StaticFiles(directory="../static"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
-templates = Jinja2Templates(directory="../templates")
+templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 def render_page(request: Request):
@@ -31,5 +31,9 @@ def redact_text(request: Request, content: str = Form(...), words: str = Form(..
     return templates.TemplateResponse("index.html", context)
 
 
+
+"""
+Uncomment line 38 & 39 below for testing of app locally on your machine.
+"""
 # if __name__ == "__main__":
     # uvicorn.run(app, host="0.0.0.0", port=8888)
